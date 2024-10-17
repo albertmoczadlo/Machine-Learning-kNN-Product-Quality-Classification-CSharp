@@ -66,23 +66,23 @@ Chcemy zaklasyfikować nowy produkt o wadze 1.1 kg i rozmiarze 5.4 cm. Obliczamy
 
 #### Odległości:
 
-Do punktu 1: 
-$$ d = \sqrt{(1.0 - 1.1)^2 + (5.0 - 5.4)^2} \approx 0.412 $$
-
-Do punktu 2: 
-$$ d = \sqrt{(1.2 - 1.1)^2 + (5.5 - 5.4)^2} \approx 0.141 $$
-
-Do punktu 3: 
-$$ d = \sqrt{(0.8 - 1.1)^2 + (4.8 - 5.4)^2} \approx 0.671 $$
-
-Do punktu 4: 
-$$ d = \sqrt{(1.5 - 1.1)^2 + (6.0 - 5.4)^2} \approx 0.721 $$
-
-Do punktu 5: 
-$$ d = \sqrt{(1.6 - 1.1)^2 + (6.2 - 5.4)^2} \approx 0.943 $$
-
-Do punktu 6: 
-$$ d = \sqrt{(1.4 - 1.1)^2 + (5.8 - 5.4)^2} = 0.5 $$
+    Do punktu 1: 
+    $$ d = \sqrt{(1.0 - 1.1)^2 + (5.0 - 5.4)^2} \approx 0.412 $$
+    
+    Do punktu 2: 
+    $$ d = \sqrt{(1.2 - 1.1)^2 + (5.5 - 5.4)^2} \approx 0.141 $$
+    
+    Do punktu 3: 
+    $$ d = \sqrt{(0.8 - 1.1)^2 + (4.8 - 5.4)^2} \approx 0.671 $$
+    
+    Do punktu 4: 
+    $$ d = \sqrt{(1.5 - 1.1)^2 + (6.0 - 5.4)^2} \approx 0.721 $$
+    
+    Do punktu 5: 
+    $$ d = \sqrt{(1.6 - 1.1)^2 + (6.2 - 5.4)^2} \approx 0.943 $$
+    
+    Do punktu 6: 
+    $$ d = \sqrt{(1.4 - 1.1)^2 + (5.8 - 5.4)^2} = 0.5 $$
 
   
 
