@@ -235,12 +235,14 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
 
  #### Przykładowe Wejście:
      
-          Podaj wagę produktu (kg): 1.1 Podaj rozmiar produktu (cm): 5.4
+          Podaj wagę produktu (kg): 1.1 
+          
+          Podaj rozmiar produktu (cm): 5.4
      
      
  #### Przykładowe Wyjście:
      
-          Nowy produkt jest zaklasyfikowany jako: Dobry
+          Nowy produkt o wadze 1.1 kg i rozmiarze 5.4 cm został zaklasyfikowany jako: Wadliwy
      
           Naciśnij dowolny klawisz, aby zakończyć.
 
