@@ -233,6 +233,66 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
 1. Naciśnij `F5` lub kliknij **Start**.
 2. W konsoli zostaniesz poproszony o podanie wagi i rozmiaru nowego produktu.
 
-#### Przykładowe Wejście:
+ #### Przykładowe Wejście:
+     
+          Podaj wagę produktu (kg): 1.1 Podaj rozmiar produktu (cm): 5.4
+     
+     
+ #### Przykładowe Wyjście:
+     
+          Nowy produkt jest zaklasyfikowany jako: Dobry
+     
+          Naciśnij dowolny klawisz, aby zakończyć.
 
+
+---
+
+## 7. Podsumowanie
+
+W tym projekcie zademonstrowaliśmy, jak zaimplementować algorytm k najbliższych sąsiadów (k-NN) w języku C# z wykorzystaniem technologii .NET w kontekście produkcji. Pokazaliśmy, jak można klasyfikować produkty jako "Dobre" lub "Wadliwe" na podstawie ich cech, takich jak waga i rozmiar.
+
+---
+
+## 8. Materiały Dodatkowe
+
+- **Dokumentacja .NET:** [Oficjalna dokumentacja .NET](https://docs.microsoft.com/dotnet/)
+- **Kursy i Tutoriale:**
+  - [Podstawy programowania w C#](https://learn.microsoft.com/dotnet/csharp/)
+  - [Wprowadzenie do uczenia maszynowego](https://learn.microsoft.com/dotnet/machine-learning/)
+- **Książki:**
+  - *Uczenie Maszynowe z językiem C#* – Seyed M. M. Taheri
+  - *Sztuczna Inteligencja: Podejście Nowoczesne* – Stuart Russell, Peter Norvig
+
+---
+
+## 9. Licencja
+
+Ten projekt jest udostępniony na licencji MIT. Możesz go dowolnie modyfikować i udostępniać.
+
+---
+
+## 10. Autor
+
+Albert Moczadło
+
+---
+
+## 11. Zachęcam do Współpracy
+
+Jeśli masz pomysły na ulepszenie tego projektu lub znalazłeś błąd, nie wahaj się otworzyć **Issue** lub przesłać **Pull Request**.
+
+---
+
+## 12. Pliki w Repozytorium
+
+- **Machine-Learning-kNN-Product-Quality-Classification-CSharp/Program.cs** – implementacja algorytmu k-NN.
+- **README.md** – dokumentacja projektu.
+
+---
+
+## 13. Kontakt
+
+Jeśli masz pytania lub potrzebujesz pomocy, możesz się ze mną skontaktować przez GitHub lub e-mail: [albertmoczadlo@gmail.com](mailto:albertmoczadlo@gmail.com)
+
+Dziękuję za zainteresowanie projektem!
 
