@@ -139,10 +139,10 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
 
             // Nowy produkt do klasyfikacji
             Console.WriteLine("Podaj wagę produktu (kg):");
-            double newWeight = double.Parse(Console.ReadLine());
+            double newWeight = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             Console.WriteLine("Podaj rozmiar produktu (cm):");
-            double newSize = double.Parse(Console.ReadLine());
+            double newSize = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             var newProduct = new Product(newWeight, newSize, null);
 
