@@ -1,119 +1,116 @@
-# Klasyfikacja Jakości Produktów za pomocą k-NN w C# (.NET)
+# Product Quality Classification using k-NN in C# (.NET)
 
-## Wprowadzenie
-Celem tego projektu jest zademonstrowanie, jak zaimplementować algorytm k najbliższych sąsiadów (k-NN) w języku C# z wykorzystaniem technologii .NET. Skupimy się na klasyfikacji jakości produktów na podstawie ich cech, takich jak waga i rozmiar. Naszym zadaniem będzie przewidzenie, czy nowy produkt jest "Dobry" czy "Wadliwy".
+## Introduction
+The goal of this project is to demonstrate how to implement the k-nearest neighbors (k-NN) algorithm in C# using .NET technology. We will focus on classifying product quality based on their features, such as weight and size. Our task will be to predict whether a new product is "Good" or "Defective."
 
-Repozytorium GitHub: [Machine-Learning-kNN-Product-Quality-Classification-CSharp](https://github.com/albertmoczadlo/Machine-Learning-kNN-Product-Quality-Classification-CSharp)
+GitHub Repository: [Machine-Learning-kNN-Product-Quality-Classification-CSharp](https://github.com/albertmoczadlo/Machine-Learning-kNN-Product-Quality-Classification-CSharp)
 
-## Spis Treści
-1. [Wprowadzenie do Klasyfikacji i Uczenia Nadzorowanego](#wprowadzenie-do-klasyfikacji-i-uczenia-nadzorowanego)
-2. [Algorytm k-NN - Wyjaśnienie Matematyczne](#algorytm-k-nn---wyjaśnienie-matematyczne)
-3. [Dane Treningowe](#dane-treningowe)
-4. [Obliczenia Krok po Kroku](#obliczenia-krok-po-kroku)
-5. [Implementacja w C#](#implementacja-w-c)
-6. [Uruchomienie Aplikacji](#uruchomienie-aplikacji)
-7. [Podsumowanie](#podsumowanie)
-8. [Materiały Dodatkowe](#materiały-dodatkowe)
-9. [Licencja](#licencja)
-10. [Autor](#autor)
-11. [Zachęcam do Współpracy](#zachęcam-do-współpracy)
-12. [Pliki w Repozytorium](#pliki-w-repozytorium)
-13. [Kontakt](#kontakt)
+## Table of Contents
+1. [Introduction to Classification and Supervised Learning](#introduction-to-classification-and-supervised-learning)
+2. [k-NN Algorithm - Mathematical Explanation](#k-nn-algorithm---mathematical-explanation)
+3. [Training Data](#training-data)
+4. [Step-by-Step Calculations](#step-by-step-calculations)
+5. [Implementation in C#](#implementation-in-c)
+6. [Running the Application](#running-the-application)
+7. [Summary](#summary)
+8. [Additional Materials](#additional-materials)
+9. [License](#license)
+10. [Author](#author)
+11. [Encouragement for Collaboration](#encouragement-for-collaboration)
+12. [Repository Files](#repository-files)
+13. [Contact](#contact)
 
 ---
 
-## 1. Wprowadzenie do Klasyfikacji i Uczenia Nadzorowanego
-Klasyfikacja to proces przypisywania obiektów do jednej z kilku predefiniowanych klas na podstawie ich cech. W uczeniu nadzorowanym model uczy się na danych, które zawierają zarówno cechy wejściowe, jak i oczekiwane wyjścia (etykiety klas). Model stara się nauczyć zależności między cechami a klasami, aby móc przewidywać klasy dla nowych danych.
+## 1. Introduction to Classification and Supervised Learning
+Classification is the process of assigning objects to one of several predefined classes based on their features. In supervised learning, the model is trained on data that includes both input features and expected outputs (class labels). The model aims to learn the relationship between the features and the classes to be able to predict the classes for new data.
 
-W naszym przypadku chcemy zaklasyfikować produkty jako "Dobre" lub "Wadliwe" na podstawie ich cech produkcyjnych.
+In our case, we want to classify products as "Good" or "Defective" based on their production characteristics.
 
-## 2. Algorytm k-NN - Wyjaśnienie Matematyczne
+## 2. k-NN Algorithm - Mathematical Explanation
 
-### Opis Algorytmu
-Algorytm k najbliższych sąsiadów (k-NN) to metoda klasyfikacji, która:
-- Oblicza odległości między nowym punktem a wszystkimi punktami w zbiorze treningowym.
-- Wybiera k najbliższych sąsiadów (punktów o najmniejszej odległości).
-- Przypisuje nowemu punktowi klasę, która najczęściej występuje wśród tych k sąsiadów (głosowanie większościowe).
+### Algorithm Description
+The k-nearest neighbors (k-NN) algorithm is a classification method that:
+- Calculates the distances between a new point and all points in the training set.
+- Selects the k closest neighbors (points with the smallest distance).
+- Assigns the new point to the class that appears most frequently among those k neighbors (majority voting).
 
-### Metryka Odległości
-Używamy odległości euklidesowej:
+### Distance Metric
+We use the Euclidean distance:
 
 $$
 d(p, q) = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2}
 $$
 
-Gdzie:
-- \( p \) i \( q \) to punkty w przestrzeni dwuwymiarowej (waga, rozmiar).
-- \( p_1, q_1 \) to wagi produktów.
-- \( p_2, q_2 \) to rozmiary produktów.
+Where:
+- \( p \) and \( q \) are points in a two-dimensional space (weight, size).
+- \( p_1, q_1 \) are the product weights.
+- \( p_2, q_2 \) are the product sizes.
 
-## 3. Dane Treningowe
-Załóżmy, że mamy następujące dane:
+## 3. Training Data
+Let’s assume we have the following data:
 
-| Nr | Waga (kg) | Rozmiar (cm) | Klasa   |
-|----|-----------|--------------|---------|
-| 1  | 1.0       | 5.0          | Dobry   |
-| 2  | 1.2       | 5.5          | Dobry   |
-| 3  | 0.8       | 4.8          | Dobry   |
-| 4  | 1.5       | 6.0          | Wadliwy |
-| 5  | 1.6       | 6.2          | Wadliwy |
-| 6  | 1.4       | 5.8          | Wadliwy |
+| No. | Weight (kg) | Size (cm) | Class     |
+|-----|-------------|-----------|-----------|
+| 1   | 1.0         | 5.0       | Good      |
+| 2   | 1.2         | 5.5       | Good      |
+| 3   | 0.8         | 4.8       | Good      |
+| 4   | 1.5         | 6.0       | Defective |
+| 5   | 1.6         | 6.2       | Defective |
+| 6   | 1.4         | 5.8       | Defective |
 
-## 4. Obliczenia Krok po Kroku
+## 4. Step-by-Step Calculations
 
-### Krok 1: Obliczenie Odległości
-Chcemy zaklasyfikować nowy produkt o wadze 1.1 kg i rozmiarze 5.4 cm. Obliczamy odległości euklidesowe między nowym produktem a każdym produktem w zbiorze treningowym:
+### Step 1: Calculate the Distances
+We want to classify a new product weighing 1.1 kg and measuring 5.4 cm. We calculate the Euclidean distances between the new product and each product in the training set:
 
-#### Odległości:
+#### Distances:
 
-     Do punktu 1:  
-        d = √((1.0 - 1.1)² + (5.0 - 5.4)²) ≈ 0.412
-    
-     Do punktu 2:  
-        d = √((1.2 - 1.1)² + (5.5 - 5.4)²) ≈ 0.141
-    
-     Do punktu 3:  
-        d = √((0.8 - 1.1)² + (4.8 - 5.4)²) ≈ 0.671
-    
-     Do punktu 4:  
-        d = √((1.5 - 1.1)² + (6.0 - 5.4)²) ≈ 0.721
-    
-     Do punktu 5:  
-        d = √((1.6 - 1.1)² + (6.2 - 5.4)²) ≈ 0.943
-    
-     Do punktu 6:  
-        d = √((1.4 - 1.1)² + (5.8 - 5.4)²) = 0.5
-
-
+- To point 1:  
+  \( d = \sqrt{(1.0 - 1.1)^2 + (5.0 - 5.4)^2} \approx 0.412 \)
   
+- To point 2:  
+  \( d = \sqrt{(1.2 - 1.1)^2 + (5.5 - 5.4)^2} \approx 0.141 \)
+  
+- To point 3:  
+  \( d = \sqrt{(0.8 - 1.1)^2 + (4.8 - 5.4)^2} \approx 0.671 \)
+  
+- To point 4:  
+  \( d = \sqrt{(1.5 - 1.1)^2 + (6.0 - 5.4)^2} \approx 0.721 \)
+  
+- To point 5:  
+  \( d = \sqrt{(1.6 - 1.1)^2 + (6.2 - 5.4)^2} \approx 0.943 \)
+  
+- To point 6:  
+  \( d = \sqrt{(1.4 - 1.1)^2 + (5.8 - 5.4)^2} = 0.5 \)
 
-### Krok 2: Wybór k Najbliższych Sąsiadów
-Wybieramy wartość \( k = 3 \) i wybieramy 3 najbliższe produkty:
-- Punkt 2: odległość ≈ 0.141 (Klasa: Dobry)
-- Punkt 1: odległość ≈ 0.412 (Klasa: Dobry)
-- Punkt 6: odległość = 0.5 (Klasa: Wadliwy)
+### Step 2: Select the k Nearest Neighbors
+We choose \( k = 3 \) and select the 3 closest products:
+- Point 2: distance ≈ 0.141 (Class: Good)
+- Point 1: distance ≈ 0.412 (Class: Good)
+- Point 6: distance = 0.5 (Class: Defective)
 
-### Krok 3: Głosowanie Większościowe
-- Klasa "Dobry": 2 głosy
-- Klasa "Wadliwy": 1 głos
+### Step 3: Majority Voting
+- Class "Good": 2 votes
+- Class "Defective": 1 vote
 
-Nowy produkt zostaje zaklasyfikowany jako **"Dobry"**.
+The new product is classified as **"Good"**.
 
 ---
 
-## 5. Implementacja w C#
+## 5. Implementation in C#
 
-### Przygotowanie Projektu
-1. Otwórz Visual Studio.
-2. Wybierz **Plik** > **Nowy** > **Projekt**.
-3. Wybierz **Aplikacja konsolowa (.NET Core)** lub **Aplikacja konsolowa (.NET Framework)**.
-4. Nazwij projekt, np. `Machine-Learning-kNN-Product-Quality-Classification-CSharp`.
+### Project Setup
+1. Open Visual Studio.
+2. Select **File** > **New** > **Project**.
+3. Choose **Console Application (.NET Core)** or **Console Application (.NET Framework)**.
+4. Name the project, e.g., `Machine-Learning-kNN-Product-Quality-Classification-CSharp`.
 
-### Struktura Plików:
-- `Program.cs` – główny plik z kodem źródłowym.
+### File Structure:
+- `Program.cs` – main source code file.
 
-### Kod Źródłowy
-Poniżej przedstawiamy pełny kod źródłowy aplikacji.
+### Source Code
+Below is the complete source code of the application.
 
 ```csharp
 using System;
@@ -126,50 +123,50 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
     {
         static void Main(string[] args)
         {
-            // Dane treningowe
+            // Training data
             var trainingData = new List<Product>
             {
-                new Product(1.0, 5.0, "Dobry"),
-                new Product(1.2, 5.5, "Dobry"),
-                new Product(0.8, 4.8, "Dobry"),
-                new Product(1.5, 6.0, "Wadliwy"),
-                new Product(1.6, 6.2, "Wadliwy"),
-                new Product(1.4, 5.8, "Wadliwy")
+                new Product(1.0, 5.0, "Good"),
+                new Product(1.2, 5.5, "Good"),
+                new Product(0.8, 4.8, "Good"),
+                new Product(1.5, 6.0, "Defective"),
+                new Product(1.6, 6.2, "Defective"),
+                new Product(1.4, 5.8, "Defective")
             };
 
-            // Nowy produkt do klasyfikacji
-            Console.WriteLine("Podaj wagę produktu (kg):");
+            // New product for classification
+            Console.WriteLine("Enter the product weight (kg):");
             double newWeight = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-            Console.WriteLine("Podaj rozmiar produktu (cm):");
+            Console.WriteLine("Enter the product size (cm):");
             double newSize = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
             var newProduct = new Product(newWeight, newSize, null);
 
-            // Wartość k
+            // Value of k
             int k = 3;
 
-            // Klasyfikacja
+            // Classification
             string predictedClass = Classify(trainingData, newProduct, k);
 
-            Console.WriteLine($"\nNowy produkt o wadze {newProduct.Weight} kg i rozmiarze {newProduct.Size} cm został zaklasyfikowany jako: {predictedClass}");
+            Console.WriteLine($"\nThe new product with weight {newProduct.Weight} kg and size {newProduct.Size} cm has been classified as: {predictedClass}");
 
-            Console.WriteLine("\nNaciśnij dowolny klawisz, aby zakończyć.");
+            Console.WriteLine("\nPress any key to exit.");
             Console.ReadKey();
         }
 
         static string Classify(List<Product> trainingData, Product newProduct, int k)
         {
-            // Obliczanie odległości
+            // Calculating distances
             foreach (var product in trainingData)
             {
                 product.Distance = EuclideanDistance(product, newProduct);
             }
 
-            // Sortowanie według odległości
+            // Sorting by distance
             var nearestNeighbors = trainingData.OrderBy(p => p.Distance).Take(k);
 
-            // Głosowanie większościowe
+            // Majority voting
             var classVotes = nearestNeighbors.GroupBy(p => p.ClassLabel)
                                              .Select(group => new { ClassLabel = group.Key, Count = group.Count() })
                                              .OrderByDescending(g => g.Count);
@@ -198,103 +195,5 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
         }
     }
 }
-```
-## Wyjaśnienie Kodu
 
-- **Klasa `Product`:**
-  - Reprezentuje pojedynczy produkt z cechami:
-    - `Weight` (waga)
-    - `Size` (rozmiar)
-    - `ClassLabel` (etykieta klasy: "Dobry" lub "Wadliwy")
-    - `Distance` (odległość od nowego produktu)
-
-- **Metoda `EuclideanDistance`:**
-  - Oblicza odległość euklidesową między dwoma produktami na podstawie ich wagi i rozmiaru.
-
-- **Metoda `Classify`:**
-  - Oblicza odległości między nowym produktem a wszystkimi produktami w zbiorze treningowym.
-  - Sortuje produkty według odległości i wybiera `k` najbliższych sąsiadów.
-  - Przeprowadza głosowanie większościowe na podstawie klas sąsiadów i zwraca przewidywaną klasę.
-
-- **Metoda `Main`:**
-  - Pobiera dane nowego produktu od użytkownika.
-  - Definiuje dane treningowe.
-  - Wywołuje metodę `Classify` i wyświetla wynik klasyfikacji.
-
----
-
-## 6. Uruchomienie Aplikacji
-
-### Kompilacja:
-1. Upewnij się, że wszystkie pliki są zapisane.
-2. Naciśnij `Ctrl + Shift + B` lub wybierz **Kompiluj > Kompiluj rozwiązanie**.
-
-### Uruchomienie:
-1. Naciśnij `F5` lub kliknij **Start**.
-2. W konsoli zostaniesz poproszony o podanie wagi i rozmiaru nowego produktu.
-
- #### Przykładowe Wejście:
-     
-          Podaj wagę produktu (kg): 1.1 
-          
-          Podaj rozmiar produktu (cm): 5.4
-     
-     
- #### Przykładowe Wyjście:
-     
-          Nowy produkt o wadze 1.1 kg i rozmiarze 5.4 cm został zaklasyfikowany jako: Wadliwy
-     
-          Naciśnij dowolny klawisz, aby zakończyć.
-
-
----
-
-## 7. Podsumowanie
-
-W tym projekcie zademonstrowaliśmy, jak zaimplementować algorytm k najbliższych sąsiadów (k-NN) w języku C# z wykorzystaniem technologii .NET w kontekście produkcji. Pokazaliśmy, jak można klasyfikować produkty jako "Dobre" lub "Wadliwe" na podstawie ich cech, takich jak waga i rozmiar.
-
----
-
-## 8. Materiały Dodatkowe
-
-- **Dokumentacja .NET:** [Oficjalna dokumentacja .NET](https://docs.microsoft.com/dotnet/)
-- **Kursy i Tutoriale:**
-  - [Podstawy programowania w C#](https://learn.microsoft.com/dotnet/csharp/)
-  - [Wprowadzenie do uczenia maszynowego](https://learn.microsoft.com/dotnet/machine-learning/)
-- **Książki:**
-  - *Uczenie Maszynowe z językiem C#* – Seyed M. M. Taheri
-  - *Sztuczna Inteligencja: Podejście Nowoczesne* – Stuart Russell, Peter Norvig
-
----
-
-## 9. Licencja
-
-Ten projekt jest udostępniony na licencji MIT. Możesz go dowolnie modyfikować i udostępniać.
-
----
-
-## 10. Autor
-
-Albert Moczadło
-
----
-
-## 11. Zachęcam do Współpracy
-
-Jeśli masz pomysły na ulepszenie tego projektu lub znalazłeś błąd, nie wahaj się otworzyć **Issue** lub przesłać **Pull Request**.
-
----
-
-## 12. Pliki w Repozytorium
-
-- **Machine-Learning-kNN-Product-Quality-Classification-CSharp/Program.cs** – implementacja algorytmu k-NN.
-- **README.md** – dokumentacja projektu.
-
----
-
-## 13. Kontakt
-
-Jeśli masz pytania lub potrzebujesz pomocy, możesz się ze mną skontaktować przez GitHub lub e-mail: [albertmoczadlo@gmail.com](mailto:albertmoczadlo@gmail.com)
-
-Dziękuję za zainteresowanie projektem!
 
