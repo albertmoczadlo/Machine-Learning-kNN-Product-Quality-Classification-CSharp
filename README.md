@@ -73,16 +73,20 @@ We want to classify a new product weighing 1.1 kg and measuring 5.4 cm. We calcu
       d = √((1.2 - 1.1)² + (5.5 - 5.4)²) ≈ 0.141
       
     - To point 3:  
+    
       d = √((0.8 - 1.1)² + (4.8 - 5.4)²) ≈ 0.671
       
     - To point 4:  
+    
       d = √((1.5 - 1.1)² + (6.0 - 5.4)²) ≈ 0.721
       
     - To point 5:  
+    
       d = √((1.6 - 1.1)² + (6.2 - 5.4)²) ≈ 0.943
       
     - To point 6:  
-          d = √((1.4 - 1.1)² + (5.8 - 5.4)²) = 0.5
+    
+      d = √((1.4 - 1.1)² + (5.8 - 5.4)²) = 0.5
 
 ### Step 2: Select the k Nearest Neighbors
 
@@ -201,4 +205,50 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
     }
 }
 
+```
+
+## Explanation of the Code
+
+### Class `Product`:
+
+- Represents a single product with features:
+  - `Weight` (weight)
+  - `Size` (size)
+  - `ClassLabel` (class label: "Good" or "Defective")
+  - `Distance` (distance from the new product)
+
+### Method `EuclideanDistance`:
+
+- Calculates the Euclidean distance between two products based on their weight and size.
+
+### Method `Classify`:
+
+- Calculates distances between the new product and all products in the training set.
+- Sorts products by distance and selects the `k` nearest neighbors.
+- Performs majority voting based on the neighbors' classes and returns the predicted class.
+
+### Method `Main`:
+
+- Collects the new product's data from the user.
+- Defines the training data.
+- Calls the `Classify` method and displays the classification result.
+
+---
+
+## 6. Running the Application
+
+### Compilation:
+
+- Ensure all files are saved.
+- Press `Ctrl + Shift + B` or select **Build > Build Solution**.
+
+### Running:
+
+- Press `F5` or click **Start**.
+- The console will prompt you to enter the new product’s weight and size.
+
+#### Sample Input:
+```bash
+Enter the product weight (kg): 1.1
+Enter the product size (cm): 5.4
 
