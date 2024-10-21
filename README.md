@@ -66,50 +66,55 @@ We want to classify a new product weighing 1.1 kg and measuring 5.4 cm. We calcu
 
 #### Distances:
 
-- To point 1:  
-  \( d = \sqrt{(1.0 - 1.1)^2 + (5.0 - 5.4)^2} \approx 0.412 \)
-  
-- To point 2:  
-  \( d = \sqrt{(1.2 - 1.1)^2 + (5.5 - 5.4)^2} \approx 0.141 \)
-  
-- To point 3:  
-  \( d = \sqrt{(0.8 - 1.1)^2 + (4.8 - 5.4)^2} \approx 0.671 \)
-  
-- To point 4:  
-  \( d = \sqrt{(1.5 - 1.1)^2 + (6.0 - 5.4)^2} \approx 0.721 \)
-  
-- To point 5:  
-  \( d = \sqrt{(1.6 - 1.1)^2 + (6.2 - 5.4)^2} \approx 0.943 \)
-  
-- To point 6:  
-  \( d = \sqrt{(1.4 - 1.1)^2 + (5.8 - 5.4)^2} = 0.5 \)
+    - To point 1:  
+      d = √((1.0 - 1.1)² + (5.0 - 5.4)²) ≈ 0.412
+      
+    - To point 2:  
+      d = √((1.2 - 1.1)² + (5.5 - 5.4)²) ≈ 0.141
+      
+    - To point 3:  
+      d = √((0.8 - 1.1)² + (4.8 - 5.4)²) ≈ 0.671
+      
+    - To point 4:  
+      d = √((1.5 - 1.1)² + (6.0 - 5.4)²) ≈ 0.721
+      
+    - To point 5:  
+      d = √((1.6 - 1.1)² + (6.2 - 5.4)²) ≈ 0.943
+      
+    - To point 6:  
+          d = √((1.4 - 1.1)² + (5.8 - 5.4)²) = 0.5
 
 ### Step 2: Select the k Nearest Neighbors
-We choose \( k = 3 \) and select the 3 closest products:
-- Point 2: distance ≈ 0.141 (Class: Good)
-- Point 1: distance ≈ 0.412 (Class: Good)
-- Point 6: distance = 0.5 (Class: Defective)
+
+    We choose \( k = 3 \) and select the 3 closest products:
+    - Point 2: distance ≈ 0.141 (Class: Good)
+    - Point 1: distance ≈ 0.412 (Class: Good)
+    - Point 6: distance = 0.5 (Class: Defective)
 
 ### Step 3: Majority Voting
-- Class "Good": 2 votes
-- Class "Defective": 1 vote
 
-The new product is classified as **"Good"**.
+    - Class "Good": 2 votes
+    - Class "Defective": 1 vote
+
+    The new product is classified as **"Good"**.
 
 ---
 
 ## 5. Implementation in C#
 
 ### Project Setup
-1. Open Visual Studio.
-2. Select **File** > **New** > **Project**.
-3. Choose **Console Application (.NET Core)** or **Console Application (.NET Framework)**.
-4. Name the project, e.g., `Machine-Learning-kNN-Product-Quality-Classification-CSharp`.
+
+  1. Open Visual Studio.
+  2. Select **File** > **New** > **Project**.
+  3. Choose **Console Application (.NET Core)** or **Console Application (.NET Framework)**.
+  4. Name the project, e.g., `Machine-Learning-kNN-Product-Quality-Classification-CSharp`.
 
 ### File Structure:
+
 - `Program.cs` – main source code file.
 
 ### Source Code
+
 Below is the complete source code of the application.
 
 ```csharp
