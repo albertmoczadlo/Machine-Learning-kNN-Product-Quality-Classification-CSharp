@@ -251,4 +251,57 @@ namespace MachineLearningkNNProductQualityClassificationCSharp
 ```bash
 Enter the product weight (kg): 1.1
 Enter the product size (cm): 5.4
+```
+
+Sample Output:
+```bash
+The new product with weight 1.1 kg and size 5.4 cm has been classified as: Good
+
+Press any key to exit.
+```
+
+## 7. Summary
+
+In this project, we demonstrated how to implement the k-nearest neighbors (k-NN) algorithm in C# using .NET technology in the context of production. We showed how to classify products as "Good" or "Defective" based on their features, such as weight and size.
+
+---
+
+## 8. Additional Materials
+
+- **.NET Documentation:** [Official .NET Documentation](https://docs.microsoft.com/dotnet/)
+- **Courses and Tutorials:**
+  - [Basics of C# Programming](https://learn.microsoft.com/dotnet/csharp/)
+  - [Introduction to Machine Learning](https://learn.microsoft.com/dotnet/machine-learning/)
+
+---
+
+## 9. License
+
+This project is licensed under the MIT license. You can modify and distribute it freely.
+
+---
+
+## 10. Author
+
+Albert Moczadło
+
+---
+
+## 11. Encouragement for Collaboration
+
+If you have any ideas to improve this project or have found a bug, feel free to open an **Issue** or submit a **Pull Request**.
+
+---
+
+## 12. Repository Files
+
+- **Machine-Learning-kNN-Product-Quality-Classification-CSharp/Program.cs** – implementation of the k-NN algorithm.
+- **README.md** – project documentation.
+
+---
+
+## 13. Contact
+
+If you have any questions or need assistance, feel free to contact me via GitHub or email: [albertmoczadlo@gmail.com](mailto:albertmoczadlo@gmail.com)
+
 
